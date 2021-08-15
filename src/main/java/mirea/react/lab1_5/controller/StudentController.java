@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import mirea.react.lab1_5.dao.StudentJdbc;
 import mirea.react.lab1_5.model.Student;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -56,4 +57,9 @@ public class StudentController {
 		return msg;
 	}
 
+	@DeleteMapping("/student/delete/{key}")
+	public String deleteStudent(@PathVariable String key){
+		String msg = studentJdbc.deleteStudent(key);
+		return msg;
+	}
 }

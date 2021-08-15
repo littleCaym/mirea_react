@@ -57,9 +57,16 @@ public class StudentJdbc {
 					student.getSurname(),student.getName(),student.getSecond_name(),student.getStudy_group_id(),
 					key
 			);
-		return "The Student N"+key+" was successfully updated!";
+		return "The Student "+key+" was successfully updated!";
 	}
 
+	public String deleteStudent(String key){
+		if(StringUtils.isNumber(key))
+			jdbcTemplate.update("DELETE FROM student WHERE id = ?", Integer.parseInt(key));
+		else
+			jdbcTemplate.update("DELETE FROM student WHERE name = ?", key);
+		return "The Student "+key+" was successfully deleted!";
+	}
 
 	private Student mapStudent(ResultSet rs, int i) throws SQLException {
 
