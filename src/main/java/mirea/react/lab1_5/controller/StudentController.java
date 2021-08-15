@@ -7,6 +7,7 @@ import mirea.react.lab1_5.model.Student;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -47,4 +48,12 @@ public class StudentController {
 		String msg = studentJdbc.createStudent(student);
 		return msg;
 	}
+
+	//Редактирование студентов
+	@PutMapping("/student/update/{key}")
+	public String updateStudent(@PathVariable String key, @RequestBody Student student){
+		String msg = studentJdbc.updateStudent(key, student);
+		return msg;
+	}
+
 }

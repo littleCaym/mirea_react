@@ -44,6 +44,22 @@ public class StudentJdbc {
 		return "The student was successfully created!!";
 	}
 
+	public String updateStudent(String key, Student student){
+		if(StringUtils.isNumber(key))
+			jdbcTemplate.update(
+					"UPDATE student SET surname = ?, name = ?, second_name = ?, study_group_id =? WHERE id = ?",
+					student.getSurname(),student.getName(),student.getSecond_name(),student.getStudy_group_id(),
+					Integer.parseInt(key)
+					);
+		else
+			jdbcTemplate.update(
+					"UPDATE student SET surname = ?, name = ?, second_name = ?, study_group_id =? WHERE surname = ?",
+					student.getSurname(),student.getName(),student.getSecond_name(),student.getStudy_group_id(),
+					key
+			);
+		return "The Student N"+key+" was successfully updated!";
+	}
+
 
 	private Student mapStudent(ResultSet rs, int i) throws SQLException {
 
