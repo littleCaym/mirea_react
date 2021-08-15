@@ -1,5 +1,7 @@
 package mirea.react.lab1_5.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import mirea.react.lab1_5.dao.StudentJdbc;
 import mirea.react.lab1_5.model.Student;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +17,16 @@ public class StudentController {
 
 
 	//Выдает либо по фамилии, либо по id
-	@GetMapping("/student/{key}")
+	@GetMapping("/student/find/{key}")
 	public Student getStudent(@PathVariable String key){
 		Student student = studentJdbc.getStudent(key);
 		return student;
+	}
+
+	@GetMapping("/student/all")
+	public List<Student> getListOfStudents(){
+		List<Student> studentList = new ArrayList<>();
+		studentList = studentJdbc.getListOfStudents();
+		return studentList;
 	}
 }
