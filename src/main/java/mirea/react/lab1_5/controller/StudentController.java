@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+//TODO: необходимо добавить обработку неверно введенных или несуществующих запросов
+
 @RestController
 public class StudentController {
 
@@ -27,6 +29,13 @@ public class StudentController {
 	public List<Student> getListOfStudents(){
 		List<Student> studentList = new ArrayList<>();
 		studentList = studentJdbc.getListOfStudents();
+		return studentList;
+	}
+
+	//Поиск студентов по группе
+	@GetMapping("/student/group/{key}")
+	public List<Student> getListOfStudentsByGroup(@PathVariable int key){
+		List<Student> studentList = studentJdbc.getListOfStudentsByGroup(key);
 		return studentList;
 	}
 }

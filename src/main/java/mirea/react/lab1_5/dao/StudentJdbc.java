@@ -32,6 +32,10 @@ public class StudentJdbc {
 		return jdbcTemplate.query("SELECT * FROM student", this::mapStudent);
 	}
 
+	public List<Student> getListOfStudentsByGroup(int key){
+		return jdbcTemplate.query("SELECT * FROM student WHERE study_group_id = ?", this::mapStudent, key);
+	}
+
 
 	private Student mapStudent(ResultSet rs, int i) throws SQLException {
 
