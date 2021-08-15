@@ -36,6 +36,14 @@ public class StudentJdbc {
 		return jdbcTemplate.query("SELECT * FROM student WHERE study_group_id = ?", this::mapStudent, key);
 	}
 
+	public String createStudent(Student student){
+		jdbcTemplate.update(
+				"INSERT INTO student (surname, name, second_name, study_group_id) VALUES (?,?,?,?)",
+				student.getSurname(), student.getName(), student.getSecond_name(), student.getStudy_group_id()
+				);
+		return "The student was successfully created!!";
+	}
+
 
 	private Student mapStudent(ResultSet rs, int i) throws SQLException {
 

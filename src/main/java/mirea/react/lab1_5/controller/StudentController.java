@@ -6,6 +6,8 @@ import mirea.react.lab1_5.dao.StudentJdbc;
 import mirea.react.lab1_5.model.Student;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 //TODO: необходимо добавить обработку неверно введенных или несуществующих запросов
@@ -37,5 +39,12 @@ public class StudentController {
 	public List<Student> getListOfStudentsByGroup(@PathVariable int key){
 		List<Student> studentList = studentJdbc.getListOfStudentsByGroup(key);
 		return studentList;
+	}
+
+	//Создание студентов
+	@PostMapping("/student/create")
+	public String createStudent(@RequestBody Student student){
+		String msg = studentJdbc.createStudent(student);
+		return msg;
 	}
 }
